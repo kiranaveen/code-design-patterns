@@ -1,4 +1,5 @@
 import Iterator.BrowserHistory;
+import Iterator.Iterator;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,11 +9,16 @@ public class Main {
         history.push("b");
         history.push("c");
 
-        for (var i = 0; i<history.getUrls().size();i++)
+        Iterator iterator = history.createIterator();
+
+        while (iterator.hasNext())
         {
-            var url = history.getUrls().get(i);
-            System.out.printf("url");
+            var url =iterator.current();
+            System.out.println(url);
+            iterator.next();
         }
+
+
 
 
 

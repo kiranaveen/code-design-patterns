@@ -22,12 +22,43 @@ public class BrowserHistory
         return lastUrl;
     }
 
-    public List<String> getUrls() {
-        return urls;
+    public Iterator createIterator()
+    {
+        return new ListIterator(this);
     }
+
+
+
 
     public void setUrls(List<String> urls) {
         this.urls = urls;
+    }
+
+    public class ListIterator implements Iterator
+    {
+        private final BrowserHistory history;
+        private int index;
+
+        public ListIterator(BrowserHistory history)
+        {
+            this.history = history;
+        }
+
+
+        @Override
+        public boolean hasNext() {
+            return (index<history.urls.size());
+        }
+
+        @Override
+        public String current() {
+            return history.urls.get(index);
+        }
+
+        @Override
+        public void next() {
+            index++;
+        }
     }
 
 }
